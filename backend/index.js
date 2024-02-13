@@ -1,12 +1,15 @@
 const express = require("express");
-const bodyParser = require('body-parser')
+const cors = require('cors')
 const app = express()
 
-const apiRouter = require('./routes/router')
+const rootRouter = require('./routes/router')
+
 
 // Middleware for parsing request bodies
-app.use(bodyParser.json())
-app.use('/api/v1', apiRouter)
+app.use(express.json())
+app.use(cors())
+app.use('/api/v1', rootRouter)
+
 
 //server start
 const port = 3000

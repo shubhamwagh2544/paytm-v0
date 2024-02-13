@@ -5,6 +5,15 @@ mongoose.connect('mongodb+srv://shubhamwagh2544:tv4WAk8LE7DiRBYF@cluster0.dwuqqi
 
 // define schema
 const UserSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+        lowercase: true,
+        minLength: 3,
+        maxLength: 10
+    },
     firstname: {
         type: String,
         required: true,
@@ -15,15 +24,6 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        maxLength: 10
-    },
-    username: {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true,
-        lowercase: true,
-        minLength: 3,
         maxLength: 10
     },
     password: {
