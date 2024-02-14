@@ -18,7 +18,7 @@
 ### Get Started
 backend spin up:
 ```bash
-cd backend/ && node index.js
+cd backend/ && npm install && node index.js
 ```
 
 
