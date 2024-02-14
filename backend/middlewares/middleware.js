@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-import { JWT_SECRET } from "../config"
+const { JWT_SECRET } = require("../config")
 
 const authMiddleware = (req, res, next) => {
     const tokenHeader = req.headers.authorization
@@ -15,8 +15,8 @@ const authMiddleware = (req, res, next) => {
 
     try {
         //verify jwt token with secret-key
-        const res = jwt.verify(token, JWT_SECRET)
-        req.userId = res.userId
+        const decode = jwt.verify(token, JWT_SECRET)
+        req.userId = decode.userId
         next()
     }
     catch (err) {

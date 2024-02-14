@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     // req validation
 
     return res.json({
-        msg: 'api response'
+        msg: 'nothing to show here!'
     })
 })
 
