@@ -2,9 +2,10 @@ const { Router } = require('express')
 const router = Router()
 const zod = require('zod')
 const jwt = require('jsonwebtoken')
-const { User } = require('../db/db')
-const { JWT_SECRET } = require('../config')
+const { User, Account } = require('../db/db')
+const { JWT_SECRET } = require('../config/config')
 const { authMiddleware } = require('../middlewares/middleware')
+const { generateRandomBalance } = require('../util/random')
 
 
 const userSignUpSchema = zod.object({
@@ -45,19 +46,27 @@ router.post('/signup', async (req, res) => {
         })
     }
 
-    // new user
+    // create user
     const savedUser = await User.create({
         username,
         firstname,
         lastname,
         password
     })
+
+    // create account for user
+    let randomBalance = generateRandomBalance(10000, 1)
+    await Account.create({
+        userId: savedUser._id,
+        balance: randomBalance
+    })
+
     const token = jwt.sign({
         userId: savedUser._id
     }, JWT_SECRET)
 
     return res.status(200).json({
-        message: 'user created successfully ',
+        message: 'user created successfully',
         token: `Bearer ${token}`
     })
 
@@ -122,7 +131,7 @@ router.put('/', authMiddleware, async (req, res) => {
 })
 
 router.get('/bulk', async (req, res) => {
-    const filter = req.query.filter
+    const filter = req.query.filter || ""       // filter via name or if no filter passed, "" brings all users
 
     const users = await User.find({
         $or: [
