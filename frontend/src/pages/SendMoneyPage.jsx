@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Button } from "../components/Button";
 import { Heading } from "../components/Heading";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 
 export function SendMoneyPage() {
@@ -10,6 +10,8 @@ export function SendMoneyPage() {
     const [searchParams] = useSearchParams()
     const id = searchParams.get("id")
     const name = searchParams.get("name")
+
+    const navigate = useNavigate()
 
     return (
         <>
@@ -23,8 +25,8 @@ export function SendMoneyPage() {
                     setAmount(e.target.value)
                 }} />
             </div>
-            <Button name={"Initiate Transfer"} onClick={(e) => {
-                axios.post('http://localhost:3000/api/v1/account/transfer/v2', {
+            <Button name={"Initiate Transfer"} onClick={async (e) => {
+                const response = await axios.post('http://localhost:3000/api/v1/account/transfer/v2', {
                     to: id,
                     amount: parseInt(amount)
                 }, {
@@ -32,6 +34,9 @@ export function SendMoneyPage() {
                         Authorization: localStorage.getItem("token")
                     }
                 })
+                if (response.status === 200) {
+                    navigate('/dashboard')
+                }
             }} />
         </>
     )

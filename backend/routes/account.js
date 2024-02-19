@@ -12,12 +12,10 @@ const transferSchema = zod.object({
 
 router.get('/balance', authMiddleware, async (req, res) => {
     const userId = req.userId
-    //console.log(userId)
 
     const account = await Account.findOne({
         userId
     })
-    //console.log(account)
 
     if (account) {
         return res.status(200).json({
