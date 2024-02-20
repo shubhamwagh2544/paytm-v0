@@ -20,9 +20,13 @@ backend spin up:
 ```bash
 cd backend/ && npm install && node index.js
 ```
-
+frontend spin up:
+```bash
+cd frontend/ && npm install && npm run dev
+```
 
 ### Stack
 1. backend: express + node
 2. database: mongodb + mongoose
 3. other backend libs: zod + jsonwebtoken + cors
+4. frontend: react + typescript + vite
