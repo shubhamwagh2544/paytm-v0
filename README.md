@@ -13,6 +13,7 @@
 2. user and account schema created with mongoose and relationship between models added
 3. different routes for user signup/signin and account balance/transfer actions
 4. amount transfer is maintained as transaction in database so that either whole transfer is rollbacked or committed at end
+5. passwords are now hashed before storing to database
 
 
 ### Get Started
