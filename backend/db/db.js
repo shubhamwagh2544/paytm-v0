@@ -1,5 +1,6 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 
 // connect to mongo
 mongoose.connect(process.env.MONGO_URL)
@@ -11,27 +12,21 @@ const UserSchema = new mongoose.Schema({
         required: true,
         unique: true,
         trim: true,
-        lowercase: true,
-        minLength: 3,
-        maxLength: 50
+        lowercase: true
     },
     firstname: {
         type: String,
         required: true,
         trim: true,
-        maxLength: 20
     },
     lastname: {
         type: String,
         required: true,
         trim: true,
-        maxLength: 20
     },
     password: {
         type: String,
         required: true,
-        minLength: 4,
-        maxLength: 20
     }
 })
 
@@ -47,6 +42,18 @@ const AccountSchema = new mongoose.Schema({
     }
 })
 
+//  password hashing
+UserSchema.methods.createHashPassword = async (password) => {
+    const saltRrounds = 10
+    const salt = await bcrypt.genSalt(saltRrounds)
+    const hashPassword = await bcrypt.hash(password, salt)
+    return hashPassword
+}
+
+UserSchema.methods.validateHashPassword = async (password, hashPassword) => {
+    const validPassword = await bcrypt.compare(password, hashPassword)
+    return validPassword
+}
 
 // create models
 const User = mongoose.model('User', UserSchema)
