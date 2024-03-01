@@ -1,7 +1,8 @@
+require('dotenv').config()
 const mongoose = require('mongoose')
 
 // connect to mongo
-mongoose.connect('mongodb+srv://shubhamwagh2544:tv4WAk8LE7DiRBYF@cluster0.dwuqqia.mongodb.net/user')
+mongoose.connect(process.env.MONGO_URL)
 
 // define schema
 const UserSchema = new mongoose.Schema({
