@@ -47,12 +47,18 @@ router.post('/signup', async (req, res) => {
     }
 
     // create user
-    const savedUser = await User.create({
+    const savedUser = User({
         username,
         firstname,
         lastname,
         password
     })
+    // hash password for user
+    const hashPassword = await savedUser.createHashPassword(password)
+    savedUser.password = hashPassword
+
+    // save user
+    await savedUser.save()
 
     // create account for user
     let randomBalance = generateRandomBalance(10000, 1)
@@ -83,18 +89,26 @@ router.post('/signin', async (req, res) => {
     }
 
     const user = await User.findOne({
-        username,
-        password
+        username
     })
 
-    if (user != null) {
-        const token = jwt.sign({
-            userId: user._id
-        }, JWT_SECRET)
+    if (user) {
+        // since user is found, validate password with hashpassword in db
+        const validPassword = await user.validateHashPassword(password, user.password)
+        if (validPassword) {
+            const token = jwt.sign({
+                userId: user._id
+            }, JWT_SECRET)
 
-        return res.status(200).json({
-            token: `Bearer ${token}`
-        })
+            return res.status(200).json({
+                token: `Bearer ${token}`
+            })
+        }
+        else {
+            return res.status(411).json({
+                message: "Error while logging in...Please check your password"
+            })
+        }
     }
     else {
         return res.status(411).json({
