@@ -10,6 +10,7 @@ const rootRouter = require('./routes/router')
 app.use(express.json())
 app.use(cors({
     origin: [
+        'https://paytm-v0-backend.vercel.app',
         'https://paytm-v0.vercel.app',
         'http://127.0.0.1:5173',
         'http://localhost:5173'
