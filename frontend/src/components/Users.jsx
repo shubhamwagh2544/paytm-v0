@@ -20,16 +20,14 @@ export function Users() {
     }, [filter])
 
     return (
-        <div>
-            <div>
-                <div>
-                    Users
-                </div>
-                <input type="text" placeholder="search users..." onChange={(e) => {
+        <div className="mt-4">
+            <div className="flex items-center justify-between">
+                <h2 className="text-lg font-semibold">Users</h2>
+                <input type="text" placeholder="Search users..." className="border border-gray-300 px-2 py-1 rounded-lg" onChange={(e) => {
                     setFilter(e.target.value)
                 }} />
             </div>
-            <div>
+            <div className="mt-4">
                 {users.map(user => <User key={user._id} user={user} />)}
             </div>
         </div>
@@ -39,11 +37,9 @@ export function Users() {
 function User({ user }) {
     const navigate = useNavigate()
     return (
-        <div>
-            <div>
-                {user.firstname}
-            </div>
-            <Button name={"Send Money"} onClick={(e) => {
+        <div className="border border-gray-300 rounded-lg p-4 mt-2 flex items-center justify-between">
+            <p>{user.firstname + ' ' + user.lastname}</p>
+            <Button name={"Send"} onClick={(e) => {
                 navigate('/send?id=' + user._id + '&name=' + user.firstname)
             }} />
         </div>
