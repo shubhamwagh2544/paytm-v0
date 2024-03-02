@@ -8,16 +8,17 @@ const rootRouter = require('./routes/router')
 
 // Middleware for parsing request bodies
 app.use(express.json())
-app.use(cors({
-    origin: [
-        'https://paytm-v0-backend.vercel.app',
-        'https://paytm-v0.vercel.app',
-        'http://127.0.0.1:5173',
-        'http://localhost:5173'
-    ],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
-}))
+// app.use(cors({
+//     origin: [
+//         'https://paytm-v0-backend.vercel.app',
+//         'https://paytm-v0.vercel.app',
+//         'http://127.0.0.1:5173',
+//         'http://localhost:5173'
+//     ],
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     credentials: true
+// }))
+app.use(cors())
 app.use('/api/v1', rootRouter)
 
 
