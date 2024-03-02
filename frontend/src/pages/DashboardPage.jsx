@@ -2,6 +2,7 @@ import { Users } from "../components/Users";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import BACKEND_URL from "../../global";
 
 export function DashboardPage() {
 
@@ -11,7 +12,7 @@ export function DashboardPage() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/v1/account/balance', {
+        axios.get(`${BACKEND_URL}/account/balance`, {
             headers: {
                 Authorization: localStorage.getItem("token")
             }
@@ -22,7 +23,7 @@ export function DashboardPage() {
     }, [balance])
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/v1/user/name', {
+        axios.get(`${BACKEND_URL}/user/name`, {
             headers: {
                 Authorization: localStorage.getItem("token")
             }

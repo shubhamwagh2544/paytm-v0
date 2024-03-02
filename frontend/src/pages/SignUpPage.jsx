@@ -5,6 +5,7 @@ import { InputBox } from "../components/InputBox";
 import { Warning } from "../components/Warning";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import BACKEND_URL from "../../global";
 
 export function SignUpPage() {
 
@@ -21,7 +22,7 @@ export function SignUpPage() {
                 <Heading heading={"Sign Up"} subheading={"Enter your information to create an account"} />
                 <form className="mt-8 space-y-6" onSubmit={async (e) => {
                     e.preventDefault();
-                    const response = await axios.post("http://localhost:3000/api/v1/user/signup", {
+                    const response = await axios.post(`${BACKEND_URL}/user/signup`, {
                         username,
                         firstname,
                         lastname,

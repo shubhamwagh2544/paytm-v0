@@ -5,6 +5,7 @@ import { InputBox } from "../components/InputBox";
 import { Warning } from "../components/Warning";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import BACKEND_URL from "../../global";
 
 export function SignInPage() {
 
@@ -25,7 +26,7 @@ export function SignInPage() {
                 }} />
                 <div className="flex justify-center">
                     <Button name={"Sign In"} onClick={async (e) => {
-                        const response = await axios.post('http://localhost:3000/api/v1/user/signin', {
+                        const response = await axios.post(`${BACKEND_URL}/user/signin`, {
                             username,
                             password
                         })
