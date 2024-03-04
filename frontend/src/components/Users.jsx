@@ -24,15 +24,22 @@ export function Users() {
         <div className="mt-4">
             <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold">Users</h2>
-                <input type="text" placeholder="Search users..." className="border border-gray-300 px-2 py-1 rounded-lg" onChange={(e) => {
-                    setFilter(e.target.value)
-                }} />
+                <input
+                    type="text"
+                    placeholder="Search users..."
+                    className="border border-gray-300 px-2 py-1 rounded-lg"
+                    onChange={(e) => {
+                        setFilter(e.target.value);
+                    }}
+                />
             </div>
             <div className="mt-4">
-                {users.map(user => <User user={user} />)}
+                {users && users.map((user) => (
+                    <User key={user._id} user={user} />
+                ))}
             </div>
         </div>
-    )
+    );
 }
 
 function User({ user }) {

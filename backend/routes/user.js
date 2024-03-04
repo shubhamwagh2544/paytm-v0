@@ -175,6 +175,7 @@ router.get('/bulk', authMiddleware, async (req, res) => {
     return res.status(200).json({
         users: users.map((user) => {
             return {
+                _id: user._id,
                 username: user.username,
                 firstname: user.firstname,
                 lastname: user.lastname
