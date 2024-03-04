@@ -1,3 +1,4 @@
 TODO
 1. password hashing
 2. notifications: error + success
+3. rate limiter
