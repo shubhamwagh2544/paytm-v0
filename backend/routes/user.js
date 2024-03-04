@@ -177,8 +177,7 @@ router.get('/bulk', authMiddleware, async (req, res) => {
             return {
                 username: user.username,
                 firstname: user.firstname,
-                lastname: user.lastname,
-                _id: user._id
+                lastname: user.lastname
             }
         })
     })

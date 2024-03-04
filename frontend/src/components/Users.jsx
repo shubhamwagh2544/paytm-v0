@@ -29,7 +29,7 @@ export function Users() {
                 }} />
             </div>
             <div className="mt-4">
-                {users.map(user => <User key={user._id} user={user} />)}
+                {users.map(user => <User user={user} />)}
             </div>
         </div>
     )
