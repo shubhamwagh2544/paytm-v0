@@ -34,7 +34,7 @@ export function SendMoneyPage() {
                         name={"Initiate Transfer"}
                         onClick={async (e) => {
                             const response = await axios.post(
-                                `${BACKEND_URL}/account/transfer/v2`,
+                                `${BACKEND_URL}/api/v1/account/transfer/v2`,
                                 { to: id, amount: parseInt(amount) },
                                 { headers: { Authorization: localStorage.getItem("token") } }
                             );

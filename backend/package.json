@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js",
+    "build": "npm install",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "Shubham Wagh",

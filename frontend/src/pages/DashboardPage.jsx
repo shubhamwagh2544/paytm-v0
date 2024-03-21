@@ -12,7 +12,7 @@ export function DashboardPage() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        axios.get(`${BACKEND_URL}/account/balance`, {
+        axios.get(`${BACKEND_URL}/api/v1/account/balance`, {
             headers: {
                 Authorization: localStorage.getItem("token")
             }
@@ -23,7 +23,7 @@ export function DashboardPage() {
     }, [balance])
 
     useEffect(() => {
-        axios.get(`${BACKEND_URL}/user/name`, {
+        axios.get(`${BACKEND_URL}/api/v1/user/name`, {
             headers: {
                 Authorization: localStorage.getItem("token")
             }

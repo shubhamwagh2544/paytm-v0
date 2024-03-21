@@ -26,7 +26,7 @@ export function SignInPage() {
                 }} />
                 <div className="flex justify-center">
                     <Button name={"Sign In"} onClick={async (e) => {
-                        const response = await axios.post(`${BACKEND_URL}/user/signin`, {
+                        const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin`, {
                             username,
                             password
                         })

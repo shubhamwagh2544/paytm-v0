@@ -37,7 +37,7 @@ export function SignUpPage() {
                     </div>
                     <div className="flex justify-center">
                         <Button name={"Sign Up"} onClick={async (e) => {
-                            const response = await axios.post(`${BACKEND_URL}/user/signup`, {
+                            const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup`, {
                                 username,
                                 firstname,
                                 lastname,
